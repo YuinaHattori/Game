@@ -6,26 +6,35 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <ImageView
+        android:id="@+id/imgLimitBreak"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha="0.5"
+        android:scaleType="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ProgressBar
         android:id="@+id/MyHPBar"
         style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="16dp"
         android:layout_marginStart="100dp"
-        android:layout_marginEnd="100dp"
         android:progressDrawable="@drawable/progressbar"
-        app:layout_constraintEnd_toStartOf="@+id/EnemyHPBar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtTurn" />
 
     <ProgressBar
         android:id="@+id/EnemyHPBar"
         style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="100dp"
+        android:layout_width="252dp"
+        android:layout_height="14dp"
+        android:layout_marginStart="248dp"
+        android:layout_marginTop="4dp"
         android:progressDrawable="@drawable/progressbar"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/MyHPBar"
         app:layout_constraintTop_toBottomOf="@+id/txtTurn" />
 
@@ -52,23 +61,23 @@
         android:id="@+id/txtEnemyHP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="232dp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/EnemyHPBar" />
+        app:layout_constraintHorizontal_bias="0.099"
+        app:layout_constraintStart_toEndOf="@+id/EnemyHPBar"
+        app:layout_constraintTop_toBottomOf="@+id/txtTurn" />
 
     <TextView
         android:id="@+id/txtMyHP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        app:layout_constraintEnd_toStartOf="@+id/txtEnemyHP"
-        app:layout_constraintHorizontal_bias="0.381"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/MyHPBar" />
+        android:layout_marginStart="20dp"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/MyHPBar"
+        app:layout_constraintTop_toBottomOf="@+id/txtTurn" />
 
     <TextView
-        android:id="@+id/txtEnemyAtack"
+        android:id="@+id/txtMyAttack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="92dp"
@@ -78,14 +87,15 @@
         app:layout_constraintTop_toBottomOf="@+id/txtEnemyHP" />
 
     <TextView
-        android:id="@+id/txtResult"
+        android:id="@+id/txtEnemyAttack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="60sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="188dp"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.499"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/txtTurn" />
+        app:layout_constraintTop_toBottomOf="@+id/txtEnemyHP" />
 
     <Button
         android:id="@+id/btnGuard"
@@ -112,7 +122,7 @@
         android:layout_width="255dp"
         android:layout_height="276dp"
         android:layout_marginStart="92dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="28dp"
         android:scaleType="centerInside"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtMyHP"
@@ -121,12 +131,42 @@
     <ImageView
         android:id="@+id/imgEnemy"
         android:layout_width="256dp"
-        android:layout_height="281dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="100dp"
+        android:layout_height="243dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="92dp"
         android:scaleType="centerInside"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtEnemyHP"
         app:srcCompat="@drawable/fantasy_game_character_slime" />
+
+    <ProgressBar
+        android:id="@+id/LimitGauge"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="189dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/MyHPBar" />
+
+    <Button
+        android:id="@+id/LimitBreak"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:backgroundTint="#B8B8B8"
+        android:text="LimitBreak"
+        app:layout_constraintStart_toEndOf="@+id/LimitGauge"
+        app:layout_constraintTop_toBottomOf="@+id/txtMyHP" />
+
+    <TextView
+        android:id="@+id/txtHealcnt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="24dp"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnHeal" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
