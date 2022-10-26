@@ -10,6 +10,6 @@ RPG風のバトルゲームを作成しました。
  
 # Author
  
-* 作成者　 ：　服部結菜
+* 作成者　：　Yuina Hattori
 * E-mail　：　yuinahattori912@gmail.com
  
