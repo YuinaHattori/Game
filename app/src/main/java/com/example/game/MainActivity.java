@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void LimitGauge(){
+    private void MyResult(){
         if (LB < 9) {
             LB ++;
             binding.LimitGauge.setProgress(LB);
@@ -83,9 +83,6 @@ public class MainActivity extends AppCompatActivity {
             binding.LimitGauge.setProgress(LB);
             binding.LimitBreak.setBackgroundColor(Color.YELLOW);
         }
-    }
-
-    private void MyResult(){
         binding.EnemyHPBar.setProgress(EnemyHP);
         binding.MyHPBar.setProgress(MyHP);
         binding.txtMyHP.setText(MyHP + " / 100");
@@ -94,11 +91,9 @@ public class MainActivity extends AppCompatActivity {
         if(EnemyHP<=0) {
             Intent i = new Intent(MainActivity.this, WinActivity.class);
             startActivity(i);
-        } else {
-            i++;
-            binding.txtTurn.setText("Turn　"+i);
         }
     }
+
     private void EnemyResult(){
         binding.EnemyHPBar.setProgress(EnemyHP);
         binding.MyHPBar.setProgress(MyHP);
@@ -120,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
             double d = Math.random();
             if (d < 0.05){
                 EnemyHP -= 20;
+                binding.imgLimitBreak.setImageResource(R.drawable.limitbreak);
                 binding.txtMyAttack.setText("Critical　20ダメージ　☞");
             } else {
                 EnemyHP -= 10;
@@ -127,12 +123,12 @@ public class MainActivity extends AppCompatActivity {
             }
             binding.imgMe.setImageResource(R.drawable.yuusya_game);
             binding.txtEnemyAttack.setText("");
-            LimitGauge();
             MyResult();
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     if (EnemyHP > 0){
+                        binding.imgLimitBreak.setImageDrawable(null);
                         binding.txtMyAttack.setText("");
                         EnemyAttack();
                         EnemyResult();
@@ -148,7 +144,6 @@ public class MainActivity extends AppCompatActivity {
             binding.txtMyAttack.setText("ガード！");
             binding.imgMe.setImageResource(R.drawable.war_shield_man);
             binding.txtEnemyAttack.setText("");
-            LimitGauge();
             MyResult();
             handler.postDelayed(new Runnable() {
                 @Override
@@ -157,7 +152,9 @@ public class MainActivity extends AppCompatActivity {
                         binding.txtMyAttack.setText("");
                         int HP = MyHP;
                         EnemyAttack();
-                        if (HP-MyHP <50){
+                        if (HP == MyHP){
+                            binding.txtEnemyAttack.setText("相手は力を溜めている");
+                        }else if  (HP-MyHP <50){
                             MyHP = HP;
                             binding.txtEnemyAttack.setText("攻撃がガードされた");
                         } else {
@@ -187,7 +184,6 @@ public class MainActivity extends AppCompatActivity {
                 if (Healcnt == 0) {
                     binding.btnHeal.setBackgroundColor(Color.GRAY);
                 }
-                LimitGauge();
                 MyResult();
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -212,10 +208,10 @@ public class MainActivity extends AppCompatActivity {
                 binding.imgLimitBreak.setImageResource(R.drawable.limitbreak);
                 binding.imgMe.setImageResource(R.drawable.yuusya_game);
                 binding.txtEnemyAttack.setText("");
+                MyResult();
                 LB = 0;
                 binding.LimitGauge.setProgress(LB);
                 binding.LimitBreak.setBackgroundColor(Color.GRAY);
-                MyResult();
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -243,5 +239,4 @@ public class MainActivity extends AppCompatActivity {
     private  void LB(){
         binding.LimitBreak.setOnClickListener(onClick_LBButton);
     }
-
 }
